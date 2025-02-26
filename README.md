@@ -1,7 +1,12 @@
 
-![Alt text](image/ci-img01-2022.png)
 
-<img src="image/ci-img01-2022.png" width="650" height="400" />
+
+<p align="center">
+  <img src="image/ci-img01-2022.png">
+</p>
+
+<!--![Alt text](image/ci-img01-2022.png)-->
+<!--<img src="image/ci-img01-2022.png" width="650" height="400" />-->
 
 
 ROS2로 두산 협동로봇을 조작하는 방법에는 크게 2가지가 있습니다.  
