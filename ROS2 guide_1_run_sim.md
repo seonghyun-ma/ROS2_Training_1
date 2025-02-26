@@ -51,6 +51,8 @@ $ ros2 launch [package_name] [launch_file_name] [arguments]
 $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=m0609
 ```
 
+<br/>
+
 ## 5) 실행 결과
 > <br/>
 > <br/>
