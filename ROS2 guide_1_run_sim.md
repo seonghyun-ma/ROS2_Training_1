@@ -59,23 +59,8 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=m0609
 > <center>동영상 입력</center>
 > <br/>
 > <br/>
+> <br/>
 <center>dsr_bringup2_rviz.launch.py 실행 결과 (rviz 실행 화면)</center>
 
 
 <!------------------------------------------------------------------->
-
-<!--
-<details>
-<summary>1. 우분투 다운로드 (Ubuntu 22.04.5 LTS (Jammy Jellyfish))</summary>
-
-1. 해당 링크를 통해 iso 파일 다운로드 (ubuntu-22.04.5-desktop-amd64.iso)  
-https://releases.ubuntu.com/jammy/
-
-```bash
-
-```
-
-</details>
--->
-
-<!--  -->
