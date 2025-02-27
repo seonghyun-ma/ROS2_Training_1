@@ -62,7 +62,7 @@ $ ros2 service call [service_name] [service_type] [arguments]
 <br/><br/>
 
 ## [service_name]
-[service_name]에는 요청하고자 하는 서비스의 이름을 입력합니다. <br/>
+[service_name]에는 요청하고자 하는 서비스의 이름을 입력합니다.<br/>
 아래의 명령어로 사용할 수 있는 서비스 목록을 확인할 수 있습니다. <br/>
 ``` bash
 $ ros2 service list
