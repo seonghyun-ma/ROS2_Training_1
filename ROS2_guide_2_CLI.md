@@ -147,8 +147,8 @@ $ ros2 service list -t | grep motion
 <br/><br/>
 
 ## [arguments]
-이러한 과정을 통해 [service_name]와 [service_type]를 알 수 있었습니다.
-다음 과정으로, 커맨드에서 서비스를 호출하기 전, 입력 인수[arguments]의 구조를 알아야 합니다
+이러한 과정을 통해 [service_name]와 [service_type]를 알 수 있었습니다.<br/>
+다음 과정으로, 커맨드에서 서비스를 호출하기 전, 입력 인수[arguments]의 구조를 알아야 합니다.<br/>
 
 이는 Doosan Robotics ROS2 패키지의 소스 코드 또는 Github를 참고하여 확인할 수 있습니다.
 
