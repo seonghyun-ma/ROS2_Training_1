@@ -52,6 +52,9 @@ Launch 파일을 실행하는 방법은 다음과 같습니다.
 ```bash
 $ ros2 launch [package_name] [launch_file_name] [arguments]
 ```
+
+</br>
+
 다음 아래의 명령어를 터미널에 입력하여 rviz를 이용한 가상로봇환경을 활성화할 수 있습니다.
 ```bash
 $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=m0609
