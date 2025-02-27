@@ -223,8 +223,15 @@ $ rm ~/ros2_ws/src/doosan-robot2-humble-devel.zip
 
 아래 내용 한번에 실행
 > 참고사항<br/>
+> 
 > Line 49, 53에는 ROS2 version과 사용자이름을 입력합니다.<br/>
-> ex> rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
+> e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
+>
+> To use ROS2 with Version 3.x Controller, specify the build option:<br/>
+> $ colcon build --cmake-args -DDRCF_VER=3<br/>
+
+
+
 ```bash
 ##################### ROS2 Installation #####################
 ### Set UTF-8 locale
@@ -282,15 +289,19 @@ $ sudo ./install_emulator.sh
 ### Build settings
 $ cd ~/ros2_ws
 $ source /opt/ros/humble/setup.bash
-$ colcon build
+$ colcon build # v3 --> colcon build -DDRCF_VER=3
 $ . install/setup.bash
 ```
 </details>
+
+
 
 <br/>
 <!------------------------------------------------------------------->
 <details>
 <summary>설치 후 작업</summary>
+
+<br/>
 
 설치가 완료되면 터미널을 통해 재시작 (명령어 reboot)
 </details>
