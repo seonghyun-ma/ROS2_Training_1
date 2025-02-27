@@ -54,9 +54,14 @@ $ source install/setup.bash # 사용자 워크스페이스 환경
 ## 1-1) 파일 생성
 test_pkg 디렉토리에 test_service.py라는 이름으로 파일을 생성합니다.<br/>
 
-> <br/>
-> <br/>
-> <br/>
+> test_pkg<br/>
+> > launch<br/>
+> > resource<br/>
+> > test<br/>
+> > test_pkg<br/>
+> > > __ init __.py<br/>
+> > > test_code.py<br/>
+> > > test_service.py<br/>
 > <br/>
 <center>test_pkg/test_pkg/test_service.py</center>
 
@@ -224,9 +229,15 @@ $ ros2 run test_pkg test_service_exe
 
 ## 2-1) 파일 생성
 
-> <br/>
-> <br/>
-> <br/>
+> test_pkg<br/>
+> > launch<br/>
+> > resource<br/>
+> > test<br/>
+> > test_pkg<br/>
+> > > __ init __.py<br/>
+> > > test_code.py<br/>
+> > > test_service.py<br/>
+> > > test_topic.py<br/>
 > <br/>
 <center>test_pkg/test_pkg/test_topic.py</center>
 
@@ -369,9 +380,16 @@ Python Interface를 이용한 노드 생성 방법 또한 앞서 진행한 노�
 
 ## 3-1) 파일 생성
 
-> <br/>
-> <br/>
-> <br/>
+> test_pkg<br/>
+> > launch<br/>
+> > resource<br/>
+> > test<br/>
+> > test_pkg<br/>
+> > > __ init __.py<br/>
+> > > test_code.py<br/>
+> > > test_service.py<br/>
+> > > test_topic.py<br/>
+> > > test_python.py<br/>
 > <br/>
 <center>test_pkg/test_pkg/test_python.py</center>
 
@@ -450,7 +468,7 @@ def _movej(pos, vel=None, acc=None, time=None, radius=None, mod= DR_MV_MOD_ABS, 
 
         future = _ros2_movej.call_async(req)
         rclpy.spin_until_future_complete(g_node, future)
-
+l
 ... (이하 생략) ...
 
 ```
