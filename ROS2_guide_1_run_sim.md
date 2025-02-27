@@ -1,17 +1,17 @@
 # <center>1. 시뮬레이션 실행</center>
 
-<br/><br/>
+<br/><br/> <!-- │ └ ─ ├  -->
 
 # 1) Launch 파일
-> <br/>
-> <center>https://github.com/doosan-robotics/doosan-robot2/tree/humble-devel/</center>
-> <center>dsr_bringup2/launch/</center>
-> <br/>
-> <center>dsr_bringup2_gazebo.launch.py</center>
-> <center>dsr_bringup2_moveit.launch.py</center>
-> <center>dsr_bringup2_rviz.launch.py</center>
-> <center>dsr_bringup2_spawn_on_gazebo.launch.py</center>
-> <br/>
+
+> doosan-robot2/dsr_bringup2/launch/<br/>
+> > dsr_bringup2_gazebo.launch.py<br/>
+> > dsr_bringup2_moveit.launch.py<br/>
+> > dsr_bringup2_rviz.launch.py<br/>
+> > dsr_bringup2_spawn_on_gazebo.launch.py<br/>
+
+
+
 
 <br/><br/>
 
