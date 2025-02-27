@@ -75,11 +75,24 @@ $ ros2 service list
 /dsr01/tool/set_tool_shape
 ```
 
+
+> doosan-robot2/<br/>
+> > dsr_msgs2/<br/>
+> > > srv/<br/>
+> > > > aux_control<br/>
+> > > > drl<br/>
+> > > > force<br/>
+> > > > gripper<br/>
+> > > > io<br/>
+> > > > modbus<br/>
+> > > > motion<br/>
+> > > > realtime<br/>
+> > > > system<br/>
+> > > > tcp<br/>
+> > > > tool<br/>
 > <br/>
-> <br/>(서비스 종류 담기 (이미지였음))
-> <br/>
-> <br/>
-> <br/>
+
+
 <center>Doosan Robotics ROS2 패키지에서 제공하는 서비스 종류</center>
 
 <br/>
@@ -153,18 +166,32 @@ $ ros2 service list -t | grep motion
 
 이는 Doosan Robotics ROS2 패키지의 소스 코드 또는 Github를 참고하여 확인할 수 있습니다.
 
-> <br/>
-> <br/>
-> <center>https://github.com/doosan-robotics/doosan-robot2/blob/humble-devel/</center>
-> <center>dsr_msgs2/srv/motion/MoveJoint.srv</center>
-> <br/>
+> doosan-robot2/<br/>
+> > dsr_msgs2/<br/>
+> > >srv/<br/>
+> > > > motion<br/>
+> > > > > MoveHome.srv<br/>
+> > > > > MoveJoint.srv<br/>
+> > > > > MoveJointx.srv<br/>
 > <br/>
 <center>파일 위치 : doosan-robot2/dsr_msgs2/srv</center><br/>
 
 ```bash
+#____________________________________________________________________________________________
+# move_joint  
+# The robot moves to the target joint position (pos) from the current joint position.
+#____________________________________________________________________________________________
 
-
-
+float64[6] pos               # target joint angle list [degree] 
+float64    vel               # set velocity: [deg/sec]
+float64    acc               # set acceleration: [deg/sec2]
+float64    time #= 0.0       # Time [sec] 
+float64    radius #=0.0      # Radius under blending mode [mm] 
+int8       mode #= 0         # MOVE_MODE_ABSOLUTE=0, MOVE_MODE_RELATIVE=1 
+int8       blend_type #= 0    # BLENDING_SPEED_TYPE_DUPLICATE=0, BLENDING_SPEED_TYPE_OVERRIDE=1
+int8       sync_type #=0      # SYNC = 0, ASYNC = 1
+---
+bool success
 ```
 <center>입력인수의 구조 (MoveJoint.srv)</center><br/>
 
@@ -315,9 +342,9 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 ## [topic_type]
 
 ```bash
-1 $ ros2 topic type /dsr01/jog_multi
-2
-3 dsr_msgs2/msg/JogMultiAxis
+$ ros2 topic type /dsr01/jog_multi
+
+dsr_msgs2/msg/JogMultiAxis
 ```
 
 <details>
@@ -325,17 +352,19 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 
 다른 방법으로는 아래 명령어를 통해 토픽의 이름과 형태를 한번에 확인할 수 있습니다.
 
-1 $ ros2 topic list -t
-2
-3 /clicked_point [geometry_msgs/msg/PointStamped]
-4 /dsr01/alter_motion_stream [dsr_msgs2/msg/AlterMotionStream]
-5 /dsr01/dsr_controller2/joint_trajectory [trajectory_msgs/msg/JointTrajectory]
-6 ...
-7 /dsr01/jog_multi [dsr_msgs2/msg/JogMultiAxis]
-8 ...
-9 /tf [tf2_msgs/msg/TFMessage]
-10 /tf_static [tf2_msgs/msg/TFMessage]
-11
+``` bash
+$ ros2 topic list -t
+
+/clicked_point [geometry_msgs/msg/PointStamped]
+/dsr01/alter_motion_stream [dsr_msgs2/msg/AlterMotionStream]
+/dsr01/dsr_controller2/joint_trajectory [trajectory_msgs/msg/JointTrajectory]
+...
+/dsr01/jog_multi [dsr_msgs2/msg/JogMultiAxis]
+...
+/tf [tf2_msgs/msg/TFMessage]
+/tf_static [tf2_msgs/msg/TFMessage]
+
+```
 </details>
 
 
@@ -349,17 +378,25 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 
 ## [arguments]
 
-> <br/>
-> <br/>
-> <center>https://github.com/doosan-robotics/doosan-robot2/blob/humble-devel/</center>
-> <center>dsr_msgs2/msg/JogMultiAxis.msg</center>
-> <br/>
+> doosan-robot2/<br/>
+> > dsr_msgs2/<br/>
+> > >msg/<br/>
+> > > > motion<br/>
+> > > > > AlterMotionStream.msg<br/>
+> > > > > JogMultiAxis.msg<br/>
+> > > > > . . .<br/>
 > <br/>
 <center>파일 위치 : doosan-robot2/dsr_msgs2/msg</center><br/>
 
 ```bash
+#____________________________________________________________________________________________
+# multi jog
+# multi jog speed = (250mm/s x 1.73) x unit vecter x speed [%] 
+#____________________________________________________________________________________________
 
-
+float64[6]  jog_axis          # unit vecter of Task space [Tx, Ty, Tz, Rx, Ry, Rz] : -1.0 ~ +1.0 
+int8        move_reference    # 0 : MOVE_REFERENCE_BASE, 1 : MOVE_REFERENCE_TOOL, 2 : MOVE_REFERENCE_WORLD
+float64     speed             # jog speed [%]
 
 ```
 <center>입력인수의 구조 (JogMultiAxis.msg)</center><br/>
@@ -378,17 +415,13 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 (입력인수는 YAML구문을 이용하여작성합니다.)<br/>
 본 예제에서는 Task 좌표계의 x축 방향으로 조그이동하는 토픽을 발행하겠습니다.<br/>
 
-
 ``` bash
 [topic_name] : /dsr01/jog_multi
 [topic_type] : dsr_msgs2/msg/JogMultiAxis
 [arguments] : "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
 
 $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
-$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [1,0,0,0,0,0], move_reference: 0,
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [[1,0,0,0,0,0]], move_reference: 0, speed: 50}"
 ```
 
 > <br/>
