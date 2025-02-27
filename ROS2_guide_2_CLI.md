@@ -62,7 +62,8 @@ $ ros2 service call [service_name] [service_type] [arguments]
 <br/><br/>
 
 ## [service_name]
-[service_name]에는 요청하고자 하는 서비스의 이름을 입력합니다. 아래의 명령어로 사용할 수 있는 서비스 목록을 확인할 수 있습니다.
+[service_name]에는 요청하고자 하는 서비스의 이름을 입력합니다. <br/>
+아래의 명령어로 사용할 수 있는 서비스 목록을 확인할 수 있습니다. <br/>
 ``` bash
 $ ros2 service list
 
@@ -83,8 +84,8 @@ $ ros2 service list
 
 <br/>
 
-motion과 관련된 서비스만 찾아보는 명령어는 다음과 같습니다.
-이를 통해 movej명령과 관련된 서비스의 이름은 /dsr01/motion/move_joint 인 것을 확인할 수 있습니다.
+motion과 관련된 서비스만 찾아보는 명령어는 다음과 같습니다.<br/>
+이를 통해 movej명령과 관련된 서비스의 이름은 /dsr01/motion/move_joint 인 것을 확인할 수 있습니다.<br/>
 
 ``` bash
 $ ros2 service list | grep motion
