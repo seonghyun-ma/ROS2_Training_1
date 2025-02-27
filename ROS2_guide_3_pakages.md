@@ -1,7 +1,7 @@
 # <center>3. 패키지 생성</center>
 
 
-
+<!-- │ └ ─ -->
 
 
 
@@ -23,9 +23,6 @@
 
 ROS2에서는 노드를 생성하고 실행하기 위해 실행파일(executable)을 사용하는데, 이를 포함할 패키지를 구성해야합니다. <br/>
 따라서 해당 페이지에서는 패키지와 실행파일을 생성하는 방법을 소개하겠습니다.<br/>
-
-
-
 
 
 
@@ -79,9 +76,13 @@ ament_python : 파이썬 패키지<br/>
 $ ros2 pkg create test_pkg --build-type ament_python
 ```
 
-> <br/>
-> <br/>
-> <br/>
+> ros2_ws<br/>
+> > src<br/>
+> > >doosan-robot2<br/>
+> > > > coomon2<br/>
+> > > > dsr_bringup2<br/>
+> > > > . . .<br/>
+> > > > test_pkg<br/>
 > <br/>
 <center>지정한 위치에 패키지 “test_pkg”가 생성된 모습</center>
 
@@ -199,11 +200,15 @@ $ colcon build --packages-select test_pkg
 패키지 디렉토리안에 패키지와 동일한 이름의 디렉토리가 있는데, 실행파일은 해당 디렉토리에 생성합니다.<br/>
 (해당 디렉토리 위치 : ~/ros2_ws/src/doosan-robot2/test_pkg/test_pkg)<br/>
 
+> test_pkg<br/>
+> > resource<br/>
+> > test<br/>
+> > test_pkg<br/>
+> 
+> > package.xml<br/>
+> > setup.cfg<br/>
+> > setup.py<br/>
 > <br/>
-> <br/>
-> <br/>
-> <br/>
-
 
 
 
@@ -218,9 +223,12 @@ $ colcon build --packages-select test_pkg
 vscode 등을 이용하여 test_pkg 디렉토리에 실행파일을 생성합니다.
 본 예제에서는 test_code.py 라는 이름의 파일을 생성하겠습니다.
 
-> <br/>
-> <br/>
-> <br/>
+> test_pkg<br/>
+> > resource<br/>
+> > test<br/>
+> > test_pkg<br/>
+> > > __ init __.py<br/>
+> > > test_code.py<br/>
 > <br/>
 <center>test_pkg/test_pkg/test_code.py</center>
 
@@ -290,6 +298,7 @@ executable코드 작성과 setup.py파일 설정이 완료되었으면, 다음 �
 ```bash
 $ colcon build --packages-select test_pkg
 ```
+
 
 
 
