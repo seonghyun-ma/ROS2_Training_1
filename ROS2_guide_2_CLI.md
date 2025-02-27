@@ -193,7 +193,10 @@ $ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0, 
 > <br/>
 > <center>영상</center>
 > <br/>
+
 <center>service call 예시 영상</center><br/>
+
+<br/>
 
 <details>
 <summary>서비스 세부 정보 확인 방법</summary>
