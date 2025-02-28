@@ -24,7 +24,7 @@ executable을 실행하여 노드 실행 (방법 2)
 <br/>
 <br/>
 <p align="center">
-  <img src="image/ci-img01-2022.png">
+  <img src="../image/ci-img01-2022.png">
 </p>
 <!--![Alt text](image/ci-img01-2022.png)-->
 <!--<img src="image/ci-img01-2022.png" width="650" height="400" />-->
