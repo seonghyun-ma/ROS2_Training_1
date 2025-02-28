@@ -1,4 +1,4 @@
-# <center>2. Using CLI Commands (Method 1)</center>
+# <center>3. Method 1 : Using CLI</center>
 
 
 
