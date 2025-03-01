@@ -532,9 +532,6 @@ $ rqt_graph
 
 <br/><br/>
 
-> <br/>
-> <center>rqt_graph 설정 사진</center>
-> <br/>
 
 <br/>
 <br/>
@@ -547,9 +544,7 @@ $ rqt_graph
 
 <br/><br/>
 
-> <br/>
-> <center>rqt_graph 그래프 사진</center>
-> <br/>
+
 
 <br/>
 <br/>
