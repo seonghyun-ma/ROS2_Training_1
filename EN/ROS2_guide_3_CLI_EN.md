@@ -535,6 +535,13 @@ $ rqt_graph
 > <br/>
 > <center>rqt_graph 설정 사진</center>
 > <br/>
+
+<br/>
+<br/>
+<p align="center">
+  <img src="../image/3_How_to_set_up_rqt_graph.png">
+</p>
+
 <center>How to configure rqt_graph</center>
 <center>(If the graph does not appear, click the arrow-shaped refresh button.)</center>
 
@@ -543,6 +550,13 @@ $ rqt_graph
 > <br/>
 > <center>rqt_graph 그래프 사진</center>
 > <br/>
+
+<br/>
+<br/>
+<p align="center">
+  <img src="../image/3_grpah_pic.png">
+</p>
+
 <center>Node "/dsr01/dsr_controller2" subscribing to the topic "/dsr01/jog_multi"</center>
 <center>Square: topic / Circle: node</center>
 </details>
