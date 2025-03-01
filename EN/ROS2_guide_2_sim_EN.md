@@ -67,9 +67,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=m0609
 <br/><br/>
 
 # 5) Execution Result
-> <br/>
-> <br/>
-> <center>동영상 입력</center>
-> <br/>
-> <br/>
+
+![2_1_rviz](https://github.com/user-attachments/assets/9a9e330e-99bc-4dc1-95fa-444726585785)
+
 <center>Result of running "dsr_bringup2_rviz.launch.py" (RViz)</center>
