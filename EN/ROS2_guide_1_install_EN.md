@@ -247,62 +247,63 @@ Execute the following commands at once:
 ```bash
 ##################### ROS2 Installation #####################
 ### Set UTF-8 locale
-$ sudo apt update && sudo apt install -y locales
-$ sudo locale-gen en_US.UTF-8
-$ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-$ export LANG=en_US.UTF-8
+sudo apt update && sudo apt install -y locales
+sudo locale-gen en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 ### Install ROS2 repository and dependencies
-$ sudo apt install -y software-properties-common curl
-$ sudo add-apt-repository universe -y
-$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-$ sudo apt update
-$ sudo apt upgrade -y
-$ sudo apt install -y ros-humble-desktop ros-humble-ros-base ros-dev-tools
+sudo apt install -y software-properties-common curl
+sudo add-apt-repository universe -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y ros-humble-desktop ros-humble-ros-base ros-dev-tools
 
 ##################### Docker Installation #####################
-$ sudo apt-get update
-$ sudo apt-get install -y ca-certificates curl
-$ sudo install -m 0755 -d /etc/apt/keyrings
-$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-$ sudo chmod a+r /etc/apt/keyrings/docker.asc
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-$ sudo apt-get update
-$ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-$ sudo docker run hello-world
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo docker run hello-world
 
 ##################### Doosan ROS2 Package Installation#####################
 ### Prerequisite installation elements before package installation
-$ sudo apt-get update
-$ sudo apt-get install -y libpoco-dev libyaml-cpp-dev wget
-$ sudo apt-get install -y ros-humble-control-msgs ros-humble-realtime-tools ros-humble-xacro ros-humble-joint-state-publisher-gui ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-gazebo-msgs ros-humble-moveit-msgs dbus-x11 ros-humble-moveit-configs-utils ros-humble-moveit-ros-move-group
-$ sudo apt install ros-humble-moveit* -y
+sudo apt-get update
+sudo apt-get install -y libpoco-dev libyaml-cpp-dev wget
+sudo apt-get install -y ros-humble-control-msgs ros-humble-realtime-tools ros-humble-xacro ros-humble-joint-state-publisher-gui ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-gazebo-msgs ros-humble-moveit-msgs dbus-x11 ros-humble-moveit-configs-utils ros-humble-moveit-ros-move-group
+sudo apt install ros-humble-moveit* -y
 
 ### install gazebo sim
 $ echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
-$ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-$ sudo apt-get update
-$ sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-humble-moveit-msgs ros-humble-ros-gz-sim ros-humble-ros-gz-image ros-humble-tf-transformations
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-humble-moveit-msgs ros-humble-ros-gz-sim ros-humble-ros-gz-image ros-humble-tf-transformations
 
 ### We recommand the /home/<user_home>/ros2_ws/src
-$ cd ~/ros2_ws/src
-$ git clone -b humble-devel https://github.com/doosan-robotics/doosan-robot2.git
-$ git clone -b humble https://github.com/ros-controls/gz_ros2_control
-$ sudo rosdep init
-$ rosdep update
-$ rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+git clone -b humble-devel https://github.com/doosan-robotics/doosan-robot2.git
+git clone -b humble https://github.com/ros-controls/gz_ros2_control
+sudo rosdep init
+rosdep update
+rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
 
 ### Install Doosan Robot Emulator
-$ cd ~/ros2_ws/src/doosan-robot2
-$ sudo usermod -aG docker $USER
-$ sudo ./install_emulator.sh
+cd ~/ros2_ws/src/doosan-robot2
+sudo usermod -aG docker $USER
+sudo ./install_emulator.sh
 
 ### Build settings
-$ cd ~/ros2_ws
-$ source /opt/ros/humble/setup.bash
-$ colcon build # v3 --> colcon build -DDRCF_VER=3
-$ . install/setup.bash
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+colcon build # v3 --> colcon build -DDRCF_VER=3
+. install/setup.bash
 ```
 </details>
 
