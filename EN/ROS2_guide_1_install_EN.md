@@ -223,7 +223,7 @@ Instead, use this command to download the Doosan ROS2 Package.
 <br/>
 <!------------------------------------------------------------------->
 <details>
-<summary>Installation Commands (Legacy version + training examples, this guide **INSTALLS IT** this way.)</summary>
+<summary>Installation Commands (Legacy version + training examples, this guide installs it this way.)</summary>
 <br/> 
 
 > Note<br/> 
@@ -292,7 +292,7 @@ sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-h
 ### We recommand the /home/<user_home>/ros2_ws/src
 mkdir -p ~/$ws_name/src
 cd ~/$ws_name/src
-git clone -b humble-devel https://github.com/seonghyun-ma/doosan-robot2.git
+git clone -b humble https://github.com/seonghyun-ma/doosan-robot2.git
 git clone -b humble https://github.com/ros-controls/gz_ros2_control
 sudo rosdep init
 rosdep update
