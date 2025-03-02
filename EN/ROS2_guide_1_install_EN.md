@@ -223,7 +223,7 @@ Instead, use this command to download the Doosan ROS2 Package.
 <br/>
 <!------------------------------------------------------------------->
 <details>
-<summary>Installation Commands (Legacy version + training examples, this guide installs it this way.)</summary>
+<summary>Installation Commands (Legacy version + training examples, this guide **INSTALLS IT** this way.)</summary>
 <br/> 
 
 > Note<br/> 
