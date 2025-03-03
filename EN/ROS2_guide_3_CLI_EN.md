@@ -523,8 +523,8 @@ Action Clients:
 
 <br/>
 
-You can check the connection status between nodes using the comprehensive GUI tool of ROS, RQt with rqt_graph.
-Through this, you can see the node "/dsr01/dsr_controller2" subscribing to the topic "/dsr01/jog_multi".
+You can check the connection status between nodes using the comprehensive GUI tool of ROS, RQt with rqt_graph.<br/>
+Through this, you can see the node "/dsr01/dsr_controller2" subscribing to the topic "/dsr01/jog_multi".<br/>
 
 ```bash
 $ rqt_graph
@@ -535,9 +535,8 @@ $ rqt_graph
 
 <br/>
 <br/>
-<p align="center">
-  <img src="../image/3_How_to_set_up_rqt_graph.png">
-</p>
+
+![image](../image/3_How_to_set_up_rqt_graph.png)
 
 <center>How to configure rqt_graph</center>
 <center>(If the graph does not appear, click the arrow-shaped refresh button.)</center>
@@ -548,9 +547,8 @@ $ rqt_graph
 
 <br/>
 <br/>
-<p align="center">
-  <img src="../image/3_grpah_pic.png">
-</p>
+
+![image](../image/3_graph.png)
 
 <center>Node "/dsr01/dsr_controller2" subscribing to the topic "/dsr01/jog_multi"</center>
 <center>Square: topic / Circle: node</center>
