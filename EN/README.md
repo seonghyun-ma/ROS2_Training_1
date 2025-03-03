@@ -29,8 +29,5 @@ While the information in this manual is reliable, Doosan Robotics will not be he
 
 <br/>
 <br/>
-<p align="center">
-  <img src="../image/0_Doosan_CI.png">
-</p>
-<!--![Alt text](image/ci-img01-2022.png)-->
-<!--<img src="image/ci-img01-2022.png" width="650" height="400" />-->
+
+![Alt text](image/0_Doosan_CI.png)
