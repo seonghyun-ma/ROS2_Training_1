@@ -30,4 +30,4 @@ While the information in this manual is reliable, Doosan Robotics will not be he
 <br/>
 <br/>
 
-![Alt text](image/0_Doosan_CI.png)
+![Alt text](../image/0_Doosan_CI.png)
