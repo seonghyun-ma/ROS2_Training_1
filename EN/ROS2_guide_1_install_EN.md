@@ -107,9 +107,7 @@ asd ALL=NOPASSWD: ALL # Command to bypass password input for sudo commands
 # Press Ctrl + X (to save and exit)
 ```
 
-<p align="center">
-  <img src="../image/1_1_sudoer.png">
-</p>
+![alt text](../image/1_1_sudoer.png)
 
 </details>
 
@@ -124,9 +122,7 @@ asd ALL=NOPASSWD: ALL # Command to bypass password input for sudo commands
 $ sudo apt install terminator -y
 ```
 
-<p align="center">
-  <img src="../image/1_2_terminator.png">
-</p>
+![alt text](../image/1_2_terminator.png)
 
 </details>
 
@@ -144,9 +140,7 @@ https://code.visualstudio.com/docs/?dv=linux64_deb
 $ cd Downloads && sudo apt install ./code_1.94.2-1728494015_amd64.deb
 ```
 
-<p align="center">
-  <img src="../image/1_3_vscode.png">
-</p>
+![alt text](../image/1_3_vscode.png)
 
 </details>
 
@@ -188,11 +182,39 @@ rw
 # The rw command specified above will only work correctly after ROS2 installation and package build.  
 ```
 
-<p align="center">
-  <img src="../image/1_4_bashrc.png">
-</p>
+
+![alt text](../image/1_4_bashrc.png)
 
 </details>
+
+
+
+
+
+
+
+
+
+
+<br/>
+<!------------------------------------------------------------------->
+<details>
+<summary>5. Tree</summary>
+
+![alt text](../image/1_5_tree.png)
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -248,7 +270,7 @@ Instead, use this command to download the Doosan ROS2 Package.
 
 > Note<br/> 
 > 
-> "$ROS_DISTRO" and "$USER" require the ROS2 version and your username.<br/>
+> "$ ROS_DISTRO" and "$ USER" require the ROS2 version and your username.<br/>
 > e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
 >
 > To use ROS2 with Version 3.x Controller, specify the build option:<br/>
@@ -343,7 +365,7 @@ colcon build # v3 --> colcon build -DDRCF_VER=3
 
 > Note<br/> 
 > 
-> "$ROS_DISTRO" and "$USER" require the ROS2 version and your username.<br/>
+> "$ ROS_DISTRO" and "$ USER" require the ROS2 version and your username.<br/>
 > e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
 >
 > To use ROS2 with Version 3.x Controller, specify the build option:<br/>
