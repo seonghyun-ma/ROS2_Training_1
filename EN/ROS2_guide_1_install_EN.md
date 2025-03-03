@@ -106,6 +106,11 @@ asd ALL=NOPASSWD: ALL # Command to bypass password input for sudo commands
 
 # Press Ctrl + X (to save and exit)
 ```
+
+<p align="center">
+  <img src="../image/1_1_sudoer.png">
+</p>
+
 </details>
 
 
@@ -118,6 +123,11 @@ asd ALL=NOPASSWD: ALL # Command to bypass password input for sudo commands
 ``` bash
 $ sudo apt install terminator -y
 ```
+
+<p align="center">
+  <img src="../image/1_2_terminator.png">
+</p>
+
 </details>
 
 <br/>
@@ -133,6 +143,11 @@ https://code.visualstudio.com/docs/?dv=linux64_deb
 ``` bash
 $ cd Downloads && sudo apt install ./code_1.94.2-1728494015_amd64.deb
 ```
+
+<p align="center">
+  <img src="../image/1_3_vscode.png">
+</p>
+
 </details>
 
 
@@ -172,6 +187,11 @@ rw
 # After saving, restart the terminal for the changes to take effect (or run "source ~/.bashrc"):  
 # The rw command specified above will only work correctly after ROS2 installation and package build.  
 ```
+
+<p align="center">
+  <img src="../image/1_4_bashrc.png">
+</p>
+
 </details>
 
 
