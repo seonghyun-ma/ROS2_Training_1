@@ -10,5 +10,5 @@ The ROS2 package (for training) used in this guide can be found in the link belo
 
 https://github.com/seonghyun-ma/doosan-robot2
 
-원본 리포지토리 (Original : Doosan Robotics ROS2 Packages)
+원본 리포지토리 (Original : Doosan Robotics ROS2 Packages)<br/>
 https://github.com/doosan-robotics/doosan-robot2
