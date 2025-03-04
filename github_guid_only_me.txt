@@ -1,0 +1,56 @@
+
+##### 마크다운 업로드 방법
+# 클론으로 가져오기
+cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2
+git clone https://github.com/seonghyun-ma/ROS2_Training_1.git
+
+# 원격 저장소 - 올리기 전
+git remote remove origin
+git remote add origin https://github.com/seonghyun-ma/ROS2_Training_1.git
+git remote -v
+
+cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2\ROS2_Training_1
+git init
+git add .
+git status
+git commit -m "README update."
+git push -u origin main
+
+
+
+
+
+
+
+
+##### 패키지
+# 클론으로 가져오기
+cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2
+git clone https://github.com/seonghyun-ma/doosan-robot2.git
+
+# 원격 저장소 - 올리기 전
+git remote remove origin
+git remote add origin https://github.com/seonghyun-ma/doosan-robot2.git
+git remote -v
+
+# 올리기
+cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2\doosan-robot2
+git init
+git add .
+git status
+git commit -m "Packages update."
+git push -u origin humble-devel
+ 
+
+
+
+
+
+# 정보 설정
+git config --global user.name "seonghyun-ma"
+git config --global user.email "shmar0701@gmail.com"
+
+git config --global user.name
+git config --global user.email
+
+
