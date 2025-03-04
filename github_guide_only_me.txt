@@ -1,14 +1,14 @@
-
-##### 마크다운 업로드 방법
+##### 마크다운 업로드 방법 for window
 # 클론으로 가져오기
 cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2
 git clone https://github.com/seonghyun-ma/ROS2_Training_1.git
 
-# 원격 저장소 - 올리기 전
+# 원격 저장소 - 올리기 전 for window
 git remote remove origin
 git remote add origin https://github.com/seonghyun-ma/ROS2_Training_1.git
 git remote -v
 
+# 올리기  for window
 cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2\ROS2_Training_1
 git init
 git add .
@@ -24,16 +24,16 @@ git push -u origin main
 
 
 ##### 패키지
-# 클론으로 가져오기
+# 클론으로 가져오기 for window
 cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2
 git clone https://github.com/seonghyun-ma/doosan-robot2.git
 
-# 원격 저장소 - 올리기 전
+# 원격 저장소 - 올리기 전 for window
 git remote remove origin
 git remote add origin https://github.com/seonghyun-ma/doosan-robot2.git
 git remote -v
 
-# 올리기
+# 올리기 for window
 cd C:\Users\user\main_folder\workspace\python_workspace\train_program\guide_2\doosan-robot2
 git init
 git add .
