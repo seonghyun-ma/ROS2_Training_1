@@ -21,24 +21,25 @@
 
 ## 1-1) Configuration of a Python Interface (common2/imp/DR_ROBOT2.py)
 
-ROS2에서는 로봇에 동작 명령을 보내기 위해 service 통신을 이용합니다.  
-이러한 service 통신을 python 함수로 구현한 기능을 python interface라고 합니다.  
-파이썬 인터페이스는 DRL (Doosna Robot Language)와 유사한 형태를 가집니다.  
+In ROS2, service communication is used to send operation commands to a robot.  
+This service communication, implemented as a Python function, is called a Python interface.  
+The Python interface has a form similar to DRL (Doosan Robot Language).  
+
 
 ![alt text](../image/6_1_DR_ROBOT2.png)
-<center>클라이언트 생성</center>
+<center>Create Client</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
 ![alt text](../image/6_2_DR_ROBOT2.png)
-<center>동작 함수 정의</center>
+<center>Motion Function Definition</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
 ![alt text](../image/6_3_DR_ROBOT2.png)
-<center>함수 내에서 서비스를 요청하는 부분</center>
+<center>Service Request within a Function</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
