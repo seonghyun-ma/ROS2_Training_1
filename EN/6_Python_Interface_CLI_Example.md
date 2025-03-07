@@ -1,4 +1,4 @@
-# <center>6. Appendix : Python Interface & CLI example</center>
+# <center>6. Appendix : Python Interface & CLI Example</center>
 
 
 
