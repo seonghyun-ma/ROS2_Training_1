@@ -197,11 +197,6 @@ $ ros2 run test_pkg test_service_exe
 
 Executing the above command will cause the robot to carry out the given commands as shown in the video.
 
-> <br/>
-> <br/>
-> <br/>
-> <br/>
-
 
 
 
@@ -344,11 +339,6 @@ $ colcon build --packages-select test_pkg
 ```bash
 $ ros2 run test_pkg test_topic_exe
 ```
-
-> <br/>
-> <br/>
-> <br/>
-> <br/>
 
 
 
@@ -528,8 +518,3 @@ $ colcon build --packages-select test_pkg
 ```bash
 $ ros2 run test_pkg test_python_exe
 ```
-
-> <br/>
-> <br/>
-> <br/>
-> <br/>

@@ -473,7 +473,7 @@ After the installation is complete, restart the system through the terminal (Com
 <br/><br/>
 <!------------------------------------------------------------------->
 
-# 4) 명령어 및 단축키
+# 4) Commands and Shortcuts
 
 <details>
 <summary>Linux Commands (Workspace Related)</summary>

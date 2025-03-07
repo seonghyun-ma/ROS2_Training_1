@@ -201,9 +201,9 @@ bool success
 
 
 
-<br/><br/>
+<br/>
 
-## 명령어
+## Run Command (service call)
 Now that we have identified the structure of the input [arguments], we can construct the service request command.<br/>
 In this example, we will request the service to move the joint angles to [0, 0, 90, 0, 90, 0].<br/>
 (Note that arguments are written using the YAML syntax.)<br/>
@@ -217,11 +217,6 @@ $ ros2 service call [service_name] [service_type] [arguments]
 $ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0, 0, 90, 0, 90, 0], vel: 60, acc: 60}"
 ```
 
-> <br/>
-> <center>영상</center>
-> <br/>
-
-<center>Example video of service call</center><br/>
 
 <br/>
 
@@ -410,7 +405,7 @@ float64     speed             # jog speed [%]
 
 <br/><br/>
 
-## Command
+## Run Command (topic publish)
 Now that we have identified the structure of the input [arguments], we can construct the topic publication command.<br/>
 (Note that arguments are written using the YAML syntax.)<br/>
 In this example, we will publish a topic to jog the robot in the x-axis direction of the Task coordinate system.<br/>
@@ -424,13 +419,6 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 $ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [[1,0,0,0,0,0]], move_reference: 0, speed: 50}"
 ```
 
-> <br/>
-> <center>영상</center>
-> <br/>
-
-<br/>
-
-<center>Example video of topic publication</center><br/>
 
 
 <br/>
@@ -601,7 +589,7 @@ $ ros2 topic list
 
 <br/><br/>
 
-## 명령어
+## Run Command (topic subsription)
 
 ```bash
 [topic_name] : /dsr01/msg/current_posx
@@ -610,6 +598,3 @@ $ ros2 topic echo [topic_name]
 $ ros2 topic echo /dsr01/msg/current_posx
 ```
 
-> <br/>
-> <center>영상</center>
-> <br/>

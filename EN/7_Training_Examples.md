@@ -31,7 +31,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real n
 $ ros2 run edu_example force_reaction
 ```
 ```bash
-# Third terminal
+# Third terminal (Optional)
 $ rqt
 ```
 
