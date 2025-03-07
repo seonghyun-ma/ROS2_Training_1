@@ -26,18 +26,21 @@ This service communication, implemented as a Python function, is called a Python
 The Python interface has a form similar to DRL (Doosan Robot Language).  
 
 
+---
 ![alt text](../image/6_1_DR_ROBOT2.png)
 <center>Create Client</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
+---
 ![alt text](../image/6_2_DR_ROBOT2.png)
 <center>Motion Function Definition</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
+---
 ![alt text](../image/6_3_DR_ROBOT2.png)
 <center>Service Request within a Function</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
