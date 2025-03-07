@@ -9,7 +9,7 @@
 <br/>
 
 ## Table of Contents
-1. Configuration of a Python Interface (common2/imp/DR_ROBOT2.py)
+1. Configuration of a Python Interface (common2/imp/DSR_ROBOT2.py)
 2. Example Function
 
 
@@ -19,7 +19,7 @@
 
 <br/>
 
-## 1-1) Configuration of a Python Interface (common2/imp/DR_ROBOT2.py)
+## 1-1) Configuration of a Python Interface (common2/imp/DSR_ROBOT2.py)
 
 In ROS2, service communication is used to send operation commands to a robot.  
 This service communication, implemented as a Python function, is called a Python interface.  
@@ -27,21 +27,21 @@ The Python interface has a form similar to DRL (Doosan Robot Language).
 
 
 ---
-![alt text](../image/6_1_DR_ROBOT2.png)
+![alt text](../image/6_1_DSR_ROBOT2.png)
 <center>Create Client</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
 ---
-![alt text](../image/6_2_DR_ROBOT2.png)
+![alt text](../image/6_2_DSR_ROBOT2.png)
 <center>Motion Function Definition</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
 <br/><br/>
 
 ---
-![alt text](../image/6_3_DR_ROBOT2.png)
+![alt text](../image/6_3_DSR_ROBOT2.png)
 <center>Service Request within a Function</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
