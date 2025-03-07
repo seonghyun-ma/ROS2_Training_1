@@ -1,4 +1,4 @@
-# <center>6. Appendix : Python Interface</center>
+# <center>6. Appendix : Python Interface & CLI example</center>
 
 
 
@@ -10,7 +10,7 @@
 
 ## Table of Contents
 1. Configuration of a Python Interface (common2/imp/DSR_ROBOT2.py)
-2. Example Function
+2. Example Function (CLI Commands)
 
 
 
@@ -19,12 +19,14 @@
 
 <br/>
 
-## 1-1) Configuration of a Python Interface (common2/imp/DSR_ROBOT2.py)
+## 1) Configuration of a Python Interface (common2/imp/DSR_ROBOT2.py)
 
-In ROS2, service communication is used to send operation commands to a robot.  
-This service communication, implemented as a Python function, is called a Python interface.  
-The Python interface has a form similar to DRL (Doosan Robot Language).  
+In ROS2, service communication is used to send operation commands to a robot.<br/>
+This service communication, implemented as a Python function, is called a Python interface.<br/>
+The Python interface has a form similar to DRL (Doosan Robot Language).<br/>
 
+
+<br/>
 
 ---
 ![alt text](../image/6_1_DSR_ROBOT2.png)
@@ -45,11 +47,18 @@ The Python interface has a form similar to DRL (Doosan Robot Language).
 <center>Service Request within a Function</center>
 <center>(common2/imp/DR_ROBOT2.py)</center>
 
-<br/><br/>
+<br/><br/><br/><br/>
 
 
 
-## 2) Example Function
+
+Examples of some functions in the Python interface can be found in the file at the path below.<br/>
+1.  doosan-robot2/dsr_example2/example/example/simple/single_robot_simple.py
+2.  doosan-robot2/edu_example/edu_example/extra/test_function.py
+
+<br/><br/><br/><br/>
+
+## 2) Example Function (CLI Commands)
 
 
 
