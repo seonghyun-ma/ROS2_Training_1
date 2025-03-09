@@ -463,6 +463,24 @@ After the installation is complete, restart the system through the terminal (Com
 
 
 
+<br/>
+<!------------------------------------------------------------------->
+<details>
+<summary>Test</summary>
+
+<br/>
+
+
+```bash
+$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py
+```
+```bash
+$ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0,0,90,0,90,0], vel: 200, acc: 200}"
+```
+
+</details>
+
+
 
 
 
