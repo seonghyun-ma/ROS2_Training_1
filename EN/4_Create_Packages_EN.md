@@ -176,7 +176,7 @@ $ colcon build --packages-select test_pkg
 
 ## 1-4) Test
 The package creation is complete.<br/>
-Restart the terminal or re-source the bashrc file to check if the package has been built successfully.<br/>
+After restarting the terminal or re-executing the bashrc file, verify that the package has been successfully built.<br/>
 
 ```bash
 1 $ source ~/.bashrc # Command to re-source the bashrc
