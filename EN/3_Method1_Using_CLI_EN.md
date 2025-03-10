@@ -418,7 +418,8 @@ In this example, we will publish a topic to jog the robot in the x-axis directio
 [arguments] : "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
 
 $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
-$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [[1,0,0,0,0,0]], move_reference: 0, speed: 50}"
+$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
+$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [0,0,0,0,0,0], move_reference: 0, speed: 50}"
 ```
 
 
