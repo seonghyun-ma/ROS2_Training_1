@@ -61,7 +61,7 @@ $ ros2 launch [package_name] [launch_file_name] [arguments]
 
 By entering the following command in the terminal, you can activate the virtual robot environment using RViz.<br/>
 ```bash
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=m0609
+$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609
 ```
 
 <br/><br/>
