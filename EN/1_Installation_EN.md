@@ -485,6 +485,41 @@ $ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0,0
 
 
 
+<br/>
+<!------------------------------------------------------------------->
+<details>
+<summary>Command to start the simulation.</summary>
+
+### arguments
+```bash
+model: Type of robot
+mode: Actual or virtual
+name: Robot namespace / Used to distinguish between multiple robots
+host: IP address of the robot controller
+```
+
+<br/>
+
+### virtual (ip : 127.0.0.1)
+Only the simulation opens.
+```bash
+$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=virtual name:=dsr01 host:=127.0.0.1
+```
+
+<br/>
+
+### real (ip : 192.168.137.100)
+The simulation opens, and the real robot is also connected.
+```bash
+$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real name:=dsr01 host:=192.168.137.100 
+```
+
+</details>
+
+
+
+
+
 
 
 

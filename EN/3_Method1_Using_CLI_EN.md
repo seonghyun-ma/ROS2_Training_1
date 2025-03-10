@@ -280,8 +280,10 @@ Action Clients:
 </details>
 
 
+<br/><br/>
 
-
+### I have prepared some examples for sending commands to Doosan Robot using CLI.  <br/>
+### You can check the prepared examples in the second paragraph of document 6 (6_Python_Interface_CLI_Example).<br/>
 
 
 
