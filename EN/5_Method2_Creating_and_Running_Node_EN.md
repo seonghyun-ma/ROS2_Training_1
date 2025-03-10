@@ -306,7 +306,7 @@ if __name__ == '__main__':
 'console_scripts': [
     "test_code_exe = test_pkg.test_code:main",
     "test_service_exe = test_pkg.test_service:main",
-    "test_topic_exe = test_pkg.test_topic:main", # 추가
+    "test_topic_exe = test_pkg.test_topic:main", # added
 ],
 ```
 
@@ -483,7 +483,7 @@ def _movej(pos, vel=None, acc=None, time=None, radius=None, mod= DR_MV_MOD_ABS, 
     "test_code_exe = test_pkg.test_code:main",
     "test_service_exe = test_pkg.test_service:main",
     "test_topic_exe = test_pkg.test_topic:main",
-    "test_python_exe = test_pkg.test_python:main", # 추가
+    "test_python_exe = test_pkg.test_python:main", # added
 ],
 ```
 
