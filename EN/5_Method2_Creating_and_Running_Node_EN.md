@@ -76,8 +76,10 @@ Create a file named test_service.py in the test_pkg directory.<br/>
 <br/><br/>
 
 ## 1-2) Write Code
-<details>
-<summary>test_service.py</summary>
+<!-- <details>
+<summary>test_service.py</summary> -->
+
+### test_service.py
 
 ```python
 import rclpy
@@ -136,7 +138,7 @@ def main(args=None):
 if __name__ == '__main__':
     main()
 ```
-</details>
+<!-- </details> -->
 
 
 
@@ -248,8 +250,10 @@ The node created through the executable will subscribe to the topic published by
 
 ## 2-2) Write Code
 
-<details>
-<summary>test_topic.py</summary>
+<!-- <details>
+<summary>test_topic.py</summary> -->
+
+### test_topic.py
 
 ```python
 import rclpy
@@ -286,7 +290,7 @@ def main(args=None):
 if __name__ == '__main__':
     main()
 ```
-</details>
+<!-- </details> -->
 
 
 
@@ -396,8 +400,10 @@ In this example, we will import functions implemented in common2 package's DSR_R
 
 ## 3-2) Write Code
 
-<details>
-<summary>test_python.py</summary>
+<!-- <details>
+<summary>test_python.py</summary> -->
+
+### test_python.py
 
 ```python
 import rclpy
@@ -421,7 +427,7 @@ def main(args=None):
         print(f"Error importing DSR_ROBOT2 : {e}")
         return
 
-    # 실행 부분
+    # run
     movej(posj(0, 0, 90, 0, 90, 0), vel=50, acc=50)
 
     for i in range(3):
@@ -436,7 +442,7 @@ def main(args=None):
 if __name__ == '__main__':
     main()
 ```
-</details>
+<!-- </details> -->
 
 <details>
 <summary>DSR_ROBOT2.py (movej function)</summary>
