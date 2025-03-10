@@ -22,7 +22,7 @@
 <br/>
 
 In this example, we will create nodes that communicate through messages to control the robot.<br/>
-The executable files created in this example will be included in the test_pkg package created in "Chapter 3: Creating Packages".<br/>
+The executable files created in this example will be included in the test_pkg package created in "Chapter 4: Creating Packages".<br/>
 
 <br/>
 
