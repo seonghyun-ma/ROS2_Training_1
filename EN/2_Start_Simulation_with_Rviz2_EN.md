@@ -1,4 +1,4 @@
-# <center>2. Running Simulation</center>
+# <center>2. Start Simulation with Rviz2 </center>
 
 <br/><br/>
 
