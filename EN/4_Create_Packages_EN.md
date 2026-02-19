@@ -38,10 +38,10 @@ In this section, we will introduce how to create a package and an executable.<br
 Use the following commands to configure the ROS2 environment and move to the directory where the package will be created.
 
 ```bash
-$ cd ~/ros2_ws # Default working directory
-$ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment
-$ source install/setup.bash # Configure user workspace environment
-$ cd ~/ros2_ws/src/doosan-robot2 # Directory to create the package
+ cd ~/ros2_ws # Default working directory
+ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment
+ source install/setup.bash # Configure user workspace environment
+ cd ~/ros2_ws/src/doosan-robot2 # Directory to create the package
 ```
 
 
@@ -57,7 +57,7 @@ $ cd ~/ros2_ws/src/doosan-robot2 # Directory to create the package
 The command to create a package is as follows.
 
 ``` bash
-$ ros2 pkg create [package name] --build-type [build type]
+ ros2 pkg create [package name] --build-type [build type]
 ```
 
 <details>
@@ -73,7 +73,7 @@ Create the package with the following command.
 (The package will be created in the directory: ~/ros2_ws/src/doosan-robot2/test_pkg)
 
 ``` bash
-$ ros2 pkg create test_pkg --build-type ament_python
+ ros2 pkg create test_pkg --build-type ament_python
 ```
 
 > ros2_ws<br/>
@@ -103,7 +103,7 @@ This process involves creating a launch directory and modifying the setup.py fil
 (The created launch directory will be located at ~/ros2_ws/src/doosan-robot2/test_pkg/launch)<br/>
 
 ```bash
-$ mkdir test_pkg/launch
+ mkdir test_pkg/launch
 ```
 
 <br/>
@@ -161,8 +161,8 @@ setup(
 ## 1-3) Build
 Next, build the package with the following commands.
 ```bash
-$ cd ~/ros2_ws # Default working directory
-$ colcon build --packages-select test_pkg
+ cd ~/ros2_ws # Default working directory
+ colcon build --packages-select test_pkg
 ```
 
 
@@ -179,8 +179,8 @@ The package creation is complete.<br/>
 After restarting the terminal or re-executing the bashrc file, verify that the package has been successfully built.<br/>
 
 ```bash
-1 $ source ~/.bashrc # Command to re-source the bashrc
-2 $ ros2 pkg list | grep test_pkg
+1  source ~/.bashrc # Command to re-source the bashrc
+2  ros2 pkg list | grep test_pkg
 3
 4 test_pkg
 ```
@@ -296,7 +296,7 @@ With the executable code written and the setup.py file configured, build the tes
 The working directory should be ~/ros2_ws (command: cd ~/ros2_ws).<br/>
 
 ```bash
-$ colcon build --packages-select test_pkg
+ colcon build --packages-select test_pkg
 ```
 
 
@@ -315,7 +315,7 @@ Once the build is complete, run the test_code_exe of the test_pkg package.
 If it runs successfully, the current date and time will be displayed.
 
 ```bash
-$ ros2 run test_pkg test_code_exe
+ ros2 run test_pkg test_code_exe
 
 #####################################
 Time the node was run : 0000-00-00 00:00:00
@@ -402,7 +402,7 @@ We can confirm that the node is created and the current time is recorded in the 
 
 ```bash
 # First Terminal
-$ ros2 run test_pkg test_code_exe
+ ros2 run test_pkg test_code_exe
 
 [INFO] [0000000000.000000000] [test_timer_node]: #####################################
 [INFO] [0000000000.000000000] [test_timer_node]: Time the node was run: 0000-00-00 00:00:00
@@ -417,7 +417,7 @@ At this point, if you enter the following command in the second terminal, you wi
 
 ```bash
 # Second Terminal
-$ ros2 node list | grep test_timer_node
+ ros2 node list | grep test_timer_node
 
 /test_timer_node
 ```
@@ -442,5 +442,5 @@ Then, search for the node again, and you will find that it no longer exists.
 ^C[INFO] [0000000000.000000000] [test_timer_node]: Node is shutting down.
 
 # Second Terminal: No output as the node no longer exists
-$ ros2 node list | grep test_timer_node
+ ros2 node list | grep test_timer_node
 ```
