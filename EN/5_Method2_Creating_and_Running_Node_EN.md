@@ -30,9 +30,9 @@ The executable files created in this example will be included in the test_pkg pa
 Move to the workspace and configure the ROS2 environment.
 
 ```bash
-$ cd ~/ros2_ws # Default working directory
-$ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment
-$ source install/setup.bash # Configure user workspace environment
+ cd ~/ros2_ws # Default working directory
+ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment
+ source install/setup.bash # Configure user workspace environment
 ```
 
 
@@ -178,7 +178,7 @@ After saving the written test_service.py and setup.py files, rebuild the package
 The build directory should be /ros2_ws (command: cd ~/ros2_ws).<br/>
 
 ```bash
-$ colcon build --packages-select test_pkg
+ colcon build --packages-select test_pkg
 ```
 
 
@@ -194,7 +194,7 @@ $ colcon build --packages-select test_pkg
 ## 1-5) Test
 
 ```bash
-$ ros2 run test_pkg test_service_exe
+ ros2 run test_pkg test_service_exe
 ```
 
 Executing the above command will cause the robot to carry out the given commands as shown in the video.
@@ -326,7 +326,7 @@ if __name__ == '__main__':
 
 ## 2-4) Build Package
 ```bash
-$ colcon build --packages-select test_pkg
+ colcon build --packages-select test_pkg
 ```
 
 
@@ -341,7 +341,7 @@ $ colcon build --packages-select test_pkg
 
 ## 2-5) Test
 ```bash
-$ ros2 run test_pkg test_topic_exe
+ ros2 run test_pkg test_topic_exe
 ```
 
 
@@ -506,7 +506,7 @@ def _movej(pos, vel=None, acc=None, time=None, radius=None, mod= DR_MV_MOD_ABS, 
 
 ## 3-4) Build Package
 ```bash
-$ colcon build --packages-select test_pkg
+ colcon build --packages-select test_pkg
 ```
 
 
@@ -522,5 +522,5 @@ $ colcon build --packages-select test_pkg
 
 ## 3-5) Test
 ```bash
-$ ros2 run test_pkg test_python_exe
+ ros2 run test_pkg test_python_exe
 ```
