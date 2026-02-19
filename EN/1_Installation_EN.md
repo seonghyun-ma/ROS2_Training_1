@@ -92,7 +92,7 @@ Mount point : /
 
 Open the administrator settings page (using terminal):
 ``` bash
-$ sudo visudo
+sudo visudo
 ```
 Add the following lines to the opened file:
 ``` bash
@@ -119,7 +119,7 @@ asd ALL=NOPASSWD: ALL # Command to bypass password input for sudo commands
 <summary>2. Installation terminator</summary>
 
 ``` bash
-$ sudo apt install terminator -y
+sudo apt install terminator -y
 ```
 
 ![alt text](../image/1_2_terminator.png)
@@ -137,7 +137,7 @@ https://code.visualstudio.com/docs/?dv=linux64_deb
 #### Installation (Using Terminal):
 (Replace "code_1.94.2-1728494015_amd64" with the actual name of the downloaded file)
 ``` bash
-$ cd Downloads && sudo apt install ./code_1.94.2-1728494015_amd64.deb
+ cd Downloads && sudo apt install ./code_1.94.2-1728494015_amd64.deb
 ```
 
 ![alt text](../image/1_3_vscode.png)
@@ -153,7 +153,7 @@ $ cd Downloads && sudo apt install ./code_1.94.2-1728494015_amd64.deb
 The bashrc file automatically runs when the terminal is launched. Through this process, we will specify commands to assist in using ROS2.  
 #### Open the bashrc file:
 ```bash
-$ code ~/.bashrc
+ code ~/.bashrc
 ```
 #### Modify the bashrc file (Add content)
 Add the following lines to the bottom of the .bashrc file and save:  
@@ -170,7 +170,7 @@ alias cb="code ~/.bashrc"
 alias ros_domain="export ROS_DOMAIN_ID=13; echo \"ROS_DOMAIN_ID=13\""
 rw() {
 cd ~/ros2_ws
-export PYTHONPATH=$PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
+export PYTHONPATH=PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
 source /opt/ros/humble/local_setup.bash
 source install/setup.bash
 ros_domain
@@ -240,19 +240,19 @@ This process may take a long time.<br/>
 
 For virtual environments,
 ```bash
-$ git clone -b humble-devel https://github.com/doosan-robotics/doosan-robot2.git
+ git clone -b humble-devel https://github.com/doosan-robotics/doosan-robot2.git
 ```
 do not use this command.
 
 <br/>
 
 ```bash
-$ mkdir -p ~/ros2_ws/src
-$ cp ~/Downloads/doosan-robot2-humble-devel.zip ~/ros2_ws/src
-$ cd ~/ros2_ws/src
-$ unzip doosan-robot2-humble-devel.zip
-$ mv doosan-robot2-humble-devel doosan-robot2
-$ rm ~/ros2_ws/src/doosan-robot2-humble-devel.zip
+ mkdir -p ~/ros2_ws/src
+ cp ~/Downloads/doosan-robot2-humble-devel.zip ~/ros2_ws/src
+ cd ~/ros2_ws/src
+ unzip doosan-robot2-humble-devel.zip
+ mv doosan-robot2-humble-devel doosan-robot2
+ rm ~/ros2_ws/src/doosan-robot2-humble-devel.zip
 ```
 Instead, use this command to download the Doosan ROS2 Package.
 
@@ -270,11 +270,11 @@ Instead, use this command to download the Doosan ROS2 Package.
 
 > Note<br/> 
 > 
-> "$ ROS_DISTRO" and "$ USER" require the ROS2 version and your username.<br/>
+> " ROS_DISTRO" and " USER" require the ROS2 version and your username.<br/>
 > e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
 >
 > To use ROS2 with Version 3.x Controller, specify the build option:<br/>
-> $ colcon build --cmake-args -DDRCF_VER=3<br/>
+>  colcon build --cmake-args -DDRCF_VER=3<br/>
 > <br/>
 
 
@@ -302,7 +302,7 @@ export LANG=en_US.UTF-8
 sudo apt install -y software-properties-common curl
 sudo add-apt-repository universe -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+echo "deb [arch=(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu (. /etc/os-release && echo UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y ros-humble-desktop ros-humble-ros-base ros-dev-tools
@@ -313,7 +313,7 @@ sudo apt-get install -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu (. /etc/os-release && echo "VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo docker run hello-world
@@ -326,27 +326,27 @@ sudo apt-get install -y ros-humble-control-msgs ros-humble-realtime-tools ros-hu
 sudo apt install ros-humble-moveit* -y
 
 ### install gazebo sim
-$ echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
+ echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable (lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-humble-moveit-msgs ros-humble-ros-gz-sim ros-humble-ros-gz-image ros-humble-tf-transformations
 
 ### We recommand the /home/<user_home>/ros2_ws/src
-mkdir -p ~/$ws_name/src
-cd ~/$ws_name/src
+mkdir -p ~/ws_name/src
+cd ~/ws_name/src
 git clone -b humble-devel https://github.com/seonghyun-ma/doosan-robot2.git
 git clone -b humble https://github.com/ros-controls/gz_ros2_control
 sudo rosdep init
 rosdep update
-rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+rosdep install -r --from-paths . --ignore-src --rosdistro ROS_DISTRO -y
 
 ### Install Doosan Robot Emulator
-cd ~/$ws_name/src/doosan-robot2
-sudo usermod -aG docker $USER
+cd ~/ws_name/src/doosan-robot2
+sudo usermod -aG docker USER
 sudo ./install_emulator.sh
 
 ### Build settings
-cd ~/$ws_name
+cd ~/ws_name
 source /opt/ros/humble/setup.bash
 colcon build # v3 --> colcon build -DDRCF_VER=3
 . install/setup.bash
@@ -365,11 +365,11 @@ colcon build # v3 --> colcon build -DDRCF_VER=3
 
 > Note<br/> 
 > 
-> "$ ROS_DISTRO" and "$ USER" require the ROS2 version and your username.<br/>
+> " ROS_DISTRO" and " USER" require the ROS2 version and your username.<br/>
 > e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
 >
 > To use ROS2 with Version 3.x Controller, specify the build option:<br/>
-> $ colcon build --cmake-args -DDRCF_VER=3<br/>
+>  colcon build --cmake-args -DDRCF_VER=3<br/>
 > <br/>
 
 
@@ -397,7 +397,7 @@ export LANG=en_US.UTF-8
 sudo apt install -y software-properties-common curl
 sudo add-apt-repository universe -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+echo "deb [arch=(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu (. /etc/os-release && echo UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y ros-humble-desktop ros-humble-ros-base ros-dev-tools
@@ -408,7 +408,7 @@ sudo apt-get install -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu (. /etc/os-release && echo "VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo docker run hello-world
@@ -421,27 +421,27 @@ sudo apt-get install -y ros-humble-control-msgs ros-humble-realtime-tools ros-hu
 sudo apt install ros-humble-moveit* -y
 
 ### install gazebo sim
-$ echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
+ echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable (lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-humble-moveit-msgs ros-humble-ros-gz-sim ros-humble-ros-gz-image ros-humble-tf-transformations
 
 ### We recommand the /home/<user_home>/ros2_ws/src
-mkdir -p ~/$ws_name/src
-cd ~/$ws_name/src
+mkdir -p ~/ws_name/src
+cd ~/ws_name/src
 git clone -b humble-devel https://github.com/doosan-robotics/doosan-robot2.git
 git clone -b humble https://github.com/ros-controls/gz_ros2_control
 sudo rosdep init
 rosdep update
-rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+rosdep install -r --from-paths . --ignore-src --rosdistro ROS_DISTRO -y
 
 ### Install Doosan Robot Emulator
-cd ~/$ws_name/src/doosan-robot2
-sudo usermod -aG docker $USER
+cd ~/ws_name/src/doosan-robot2
+sudo usermod -aG docker USER
 sudo ./install_emulator.sh
 
 ### Build settings
-cd ~/$ws_name
+cd ~/ws_name
 source /opt/ros/humble/setup.bash
 colcon build # v3 --> colcon build -DDRCF_VER=3
 . install/setup.bash
@@ -473,11 +473,11 @@ After the installation is complete, restart the system through the terminal (Com
 
 ```bash
 # First terminal
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py
+ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py
 ```
 ```bash
 # Second terminal
-$ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0,0,90,0,90,0], vel: 200, acc: 200}"
+ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0,0,90,0,90,0], vel: 200, acc: 200}"
 ```
 
 </details>
@@ -503,7 +503,7 @@ host: IP address of the robot controller
 ### virtual (ip : 127.0.0.1)
 Only the simulation opens.
 ```bash
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=virtual name:=dsr01 host:=127.0.0.1
+ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=virtual name:=dsr01 host:=127.0.0.1
 ```
 
 <br/>
@@ -511,7 +511,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=virtua
 ### real (ip : 192.168.137.100)
 The simulation opens, and the real robot is also connected.
 ```bash
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real name:=dsr01 host:=192.168.137.100 
+ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real name:=dsr01 host:=192.168.137.100 
 ```
 
 </details>
@@ -535,7 +535,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real n
 
 | Command | Content | Remarks |
 |-|-|-|
-|cd         |Changing Workspace Locations               |$ cd [file_path]|
+|cd         |Changing Workspace Locations               | cd [file_path]|
 |cd /       |Move to the root directory                 ||
 |cd ~       |Move to the home directory                 ||
 |cd .       |Move to the current directory (refresh)    ||
@@ -547,7 +547,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real n
 |rm         |Delete a file or directory                 |-r : Delete subdirectories
 |           |                                           |-f : Force delete
 |           |                                           |-i : Confirms before deletion
-|ls         |Check the list of files or directories in the current directory    |$ ls -al
+|ls         |Check the list of files or directories in the current directory    | ls -al
 |           |                                           |-a : View all
 |           |                                   |-l : Detailed information (owner, size, modification time, etc.)
 |           |                                           |-S : Sort by size
@@ -568,7 +568,7 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real n
 
 | Command | Content | Remarks |
 |-|-|-|
-|cat    | Check short text file contents  | Can concatenate and display multiple files ($ cat [file1] [file2])
+|cat    | Check short text file contents  | Can concatenate and display multiple files ( cat [file1] [file2])
 |more   | Check long text file contents   | Automatically exits after reading the file (more)
 |less   | Check long text file contents   | Unlike "more", allows up and down navigation, exit with 'q' (less)
 |head   | Display the first 10 lines | Can specify the number of lines with the -n option (head -n 5 [file_name])
@@ -610,11 +610,11 @@ $ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609 mode:=real n
 | Command | Content | Remarks |
 |-|-|-|
 |clear      | Clear terminal screen         |
-|echo       | Print to the screen           | $ echo 'hello world'
-|alias|Create user-defind command| $ alias aa="[long command]" → Use the long command by entering 'aa' in the CLI
+|echo       | Print to the screen           |  echo 'hello world'
+|alias|Create user-defind command|  alias aa="[long command]" → Use the long command by entering 'aa' in the CLI
 |unalias    | Delete user-defind command    |
-|grep       | Search for specific words     | Use in command output : $ [command] \| grep [content]
-|||Use on files : $ grep [content] [file_name]
+|grep       | Search for specific words     | Use in command output :  [command] \| grep [content]
+|||Use on files :  grep [content] [file_name]
 </details>
 
 
