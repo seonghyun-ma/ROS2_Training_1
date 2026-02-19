@@ -40,9 +40,9 @@ def generate_launch_description():
 # 3) Initial Setup
 Move to the workspace and configure the ROS2 environment.
 ``` bash
-$ cd ~/ros2_ws # Default Working Directory
-$ source /opt/ros/humble/local_setup.bash # Configure ROS 2 Environment
-$ source install/setup.bash # User Workspace Environment
+ cd ~/ros2_ws # Default Working Directory
+ source /opt/ros/humble/local_setup.bash # Configure ROS 2 Environment
+ source install/setup.bash # User Workspace Environment
 ```
 
 
@@ -51,7 +51,7 @@ $ source install/setup.bash # User Workspace Environment
 # 4) Running Launch File
 Here is how to run the launch file.
 ```bash
-$ ros2 launch [package_name] [launch_file_name] [arguments]
+ ros2 launch [package_name] [launch_file_name] [arguments]
 ```
 
 
@@ -61,7 +61,7 @@ $ ros2 launch [package_name] [launch_file_name] [arguments]
 
 By entering the following command in the terminal, you can activate the virtual robot environment using RViz.<br/>
 ```bash
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609
+ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py model:=m0609
 ```
 
 <br/><br/>
