@@ -24,15 +24,15 @@
 ## Initial Setup
 Move to the workspace and configure the ROS2 environment.<br/>
 ```bash
-$ cd ~/ros2_ws # Default working directory<br/>
-$ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment<br/>
-$ source install/setup.bash # Configure user workspace environment<br/>
+ cd ~/ros2_ws # Default working directory<br/>
+ source /opt/ros/humble/local_setup.bash # Configure ROS 2 environment<br/>
+ source install/setup.bash # Configure user workspace environment<br/>
 ```
 <br/>
 
 As a precondition, activate the controller node of the robot.<br/>
 ```bash
-$ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py
+ ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py
 ```
 
 
@@ -50,7 +50,7 @@ In this example, we will execute the "movej" command.<br/>
 The basic CLI command syntax for requesting a service is as follows.<br/>
 (service name, service type, arguments)<br/>
 ``` bash
-$ ros2 service call [service_name] [service_type] [arguments]
+ ros2 service call [service_name] [service_type] [arguments]
 ```
 
 
@@ -65,7 +65,7 @@ $ ros2 service call [service_name] [service_type] [arguments]
 Enter the name of the service you want to request in [service_name].<br/>
 You can check the available services with the following command.<br/>
 ``` bash
-$ ros2 service list
+ ros2 service list
 
 /dsr01/aux_control/get_control_mode
 /dsr01/aux_control/get_control_space
@@ -101,7 +101,7 @@ You can find only the services related to "motion" with the following command.<b
 This allows you to confirm that the service name related to the movej command is /dsr01/motion/move_joint.<br/>
 
 ``` bash
-$ ros2 service list | grep motion
+ ros2 service list | grep motion
 
 /dsr01/motion/alter_motion
 /dsr01/motion/change_operation_speed
@@ -127,7 +127,7 @@ $ ros2 service list | grep motion
 Now, using the following command, you can confirm that the service type is dsr_msgs2/srv/MoveJoint.
 
 ```bash
-$ ros2 service type /dsr01/motion/move_joint
+ ros2 service type /dsr01/motion/move_joint
 
 dsr_msgs2/srv/MoveJoint
 ```
@@ -137,7 +137,7 @@ dsr_msgs2/srv/MoveJoint
 Alternatively, you can use the following command to check the names and types of services at once.
 
 ```bash
-$ ros2 service list -t | grep motion
+ ros2 service list -t | grep motion
 
 /dsr01/motion/alter_motion [dsr_msgs2/srv/AlterMotion]
 /dsr01/motion/change_operation_speed [dsr_msgs2/srv/ChangeOperationSpeed]
@@ -213,8 +213,8 @@ In this example, we will request the service to move the joint angles to [0, 0, 
 [service_type] : dsr_msgs2/srv/MoveJoint
 [arguments] : "{pos: [0, 0, 90, 0, 90, 0], vel: 60, acc: 60}"
 
-$ ros2 service call [service_name] [service_type] [arguments]
-$ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0, 0, 90, 0, 90, 0], vel: 60, acc: 60}"
+ ros2 service call [service_name] [service_type] [arguments]
+ ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [0, 0, 90, 0, 90, 0], vel: 60, acc: 60}"
 ```
 
 
@@ -229,11 +229,11 @@ You can check which node handles the service request and response.<br/>
 Use the following command to see if any node handles the service "/dsr01/motion/move_joint".<br/>
 
 ``` bash
-$ for node in $(ros2 node list)
-$ do
-$ echo "Checking node: $node"
-$ ros2 node info $node | grep '/dsr01/motion/move_joint' && echo " -> found in $node"
-$ done
+ for node in (ros2 node list)
+ do
+ echo "Checking node: node"
+ ros2 node info node | grep '/dsr01/motion/move_joint' && echo " -> found in node"
+ done
 
 Checking node: /dsr01/connection_node
 Checking node: /dsr01/controller_manager
@@ -253,7 +253,7 @@ We can see that the node "/dsr01/dsr_controller2" handles the service "/dsr01/mo
 By examining the node's information with the following command, we can confirm that this node is the service server for "/dsr01/motion/move_joint".<br/>
 
 ``` bash
-$ ros2 node info /dsr01/dsr_controller2
+ ros2 node info /dsr01/dsr_controller2
 
 /dsr01/dsr_controller2
 Subscribers:
@@ -300,7 +300,7 @@ If you enter --once at the [rate] location, the topic is published once. If you 
 (publication rate, topic name, topic type, arguments)<br/
 
 ```bash
-$ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
+ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 ```
 
 
@@ -314,7 +314,7 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 ## [topic_name]
 
 ```bash
-1 $ ros2 topic list
+1  ros2 topic list
 2
 3 /clicked_point
 4 /dsr01/alter_motion_stream
@@ -339,7 +339,7 @@ $ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
 ## [topic_type]
 
 ```bash
-$ ros2 topic type /dsr01/jog_multi
+ ros2 topic type /dsr01/jog_multi
 
 dsr_msgs2/msg/JogMultiAxis
 ```
@@ -350,7 +350,7 @@ dsr_msgs2/msg/JogMultiAxis
 Alternatively, you can use the following command to check the names and types of topics at once.
 
 ``` bash
-$ ros2 topic list -t
+ ros2 topic list -t
 
 /clicked_point [geometry_msgs/msg/PointStamped]
 /dsr01/alter_motion_stream [dsr_msgs2/msg/AlterMotionStream]
@@ -417,9 +417,9 @@ In this example, we will publish a topic to jog the robot in the x-axis directio
 [topic_type] : dsr_msgs2/msg/JogMultiAxis
 [arguments] : "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
 
-$ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
-$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
-$ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [0,0,0,0,0,0], move_reference: 0, speed: 50}"
+ ros2 topic pub [rate] [topic_name] [topic_type] [arguments]
+ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [1,0,0,0,0,0], move_reference: 0, speed: 50}"
+ ros2 topic pub --once /dsr01/jog_multi dsr_msgs2/msg/JogMultiAxis "{jog_axis: [0,0,0,0,0,0], move_reference: 0, speed: 50}"
 ```
 
 
@@ -438,7 +438,7 @@ You can check which node is subscribing to the topic.<br/>
 First, check the information of the topic "/dsr01/jog_multi" to know 1) the type of the topic and 2, 3) the number of nodes that publish and subscribe to the topic.
 
 ```bash
-$ ros2 topic info /dsr01/jog_multi
+ ros2 topic info /dsr01/jog_multi
 
 Type: dsr_msgs2/msg/JogMultiAxis
 Publisher count: 0
@@ -450,11 +450,11 @@ Subscription count: 1
 Check which node handles the topic "/dsr01/jog_multi" with the following command.
 
 ```bash
-$ for node in $(ros2 node list)
-$ do
-$   echo "Checking node: $node"
-$   ros2 node info $node | grep '/dsr01/jog_multi' && echo " -> found in $node"
-$ done
+ for node in (ros2 node list)
+ do
+   echo "Checking node: node"
+   ros2 node info node | grep '/dsr01/jog_multi' && echo " -> found in node"
+ done
 
 Checking node: /dsr01/connection_node
 Checking node: /dsr01/controller_manager
@@ -473,7 +473,7 @@ We can see that the node "/dsr01/dsr_controller2" handles the topic "/dsr01/jog_
 By examining the node's information with the following command, we can confirm that this node is subscribing to the topic "/dsr01/jog_multi".<br/>
 
 ```bash
-$ ros2 node info /dsr01/dsr_controller2
+ ros2 node info /dsr01/dsr_controller2
 
 /dsr01/dsr_controller2
 Subscribers:
@@ -518,7 +518,7 @@ You can check the connection status between nodes using the comprehensive GUI to
 Through this, you can see the node "/dsr01/dsr_controller2" subscribing to the topic "/dsr01/jog_multi".<br/>
 
 ```bash
-$ rqt_graph
+ rqt_graph
 ```
 
 <br/><br/>
@@ -563,7 +563,7 @@ In this example, we will subscribe to the topic that indicates the current posit
 The command to subscribe to a topic is as follows. (topic name)
 
 ```bash
-$ ros2 topic echo [topic_name]
+ ros2 topic echo [topic_name]
 ```
 
 
@@ -574,7 +574,7 @@ $ ros2 topic echo [topic_name]
 ## [topic_name]
 
 ```bash
-$ ros2 topic list
+ ros2 topic list
 
 /clicked_point
 /dsr01/alter_motion_stream
@@ -597,7 +597,7 @@ $ ros2 topic list
 ```bash
 [topic_name] : /dsr01/msg/current_posx
 
-$ ros2 topic echo [topic_name]
-$ ros2 topic echo /dsr01/msg/current_posx
+ ros2 topic echo [topic_name]
+ ros2 topic echo /dsr01/msg/current_posx
 ```
 
