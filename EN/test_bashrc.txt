@@ -1,0 +1,192 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+echo "bashrc is reloaded!"
+echo "==================="
+echo "if you want to use ROS2(ID=13),   type the command \"rt\""
+echo "if you want to reload the bashrc, type the command \"sb\""
+echo "if you want to open the bashrc,   type the command \"cb\""
+echo "test simulation   : test"
+echo "joing 90 position : j90"
+echo "edu_example build : qwe"
+
+alias cb="code ~/.bashrc"
+alias sb="source ~/.bashrc"
+alias ros_domain="export ROS_DOMAIN_ID=13; echo \"ROS_DOMAIN_ID=13\""
+alias test="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py name:=dsr01 model:=m0609 color:=white"
+alias j90="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+alias j0="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  0,   0,  0,   0], vel: 30, acc: 30}\""
+alias qwe="colcon build --packages-select edu_example" # ; ros2 run edu_example test_function"
+alias r1="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=real host:=192.168.137.101 model:=m0609 name:=dsr01 port:=12345 color:=white"
+alias r2="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=real host:=192.168.137.100 model:=m0609 name:=dsr02 port:=12345 color:=blue"
+alias d1="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+alias d2="ros2 service call /dsr02/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+
+
+# ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [   0,   0,  70,   0,  90,   0], vel: 30, acc: 30}"
+# ros2 service call /dsr02/motion/move_joint dsr_msgs2/srv/MoveJoint "{pos: [   0,   0,  70,   0,  90,   0], vel: 30, acc: 30}"
+
+# rw() {
+#     cd ~/ros2_ws
+#     export PYTHONPATH=$PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
+#     source /opt/ros/humble/local_setup.bash
+#     source install/setup.bash
+#     ros_domain
+#     echo "ROS2 humble is activated! (ID=13) (ros2_ws)"
+# }
+# rw
+
+# rw3() {
+#     cd ~/ros2_ws_3
+#     export PYTHONPATH=$PYTHONPATH:~/ros2_ws_3/install/common2/lib/common2/imp
+#     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ros/humble/lib
+#     export RVIZ_PLUGIN_PATH=$RVIZ_PLUGIN_PATH:/opt/ros/humble/lib
+#     source /opt/ros/humble/local_setup.bash
+#     source install/setup.bash
+#     ros_domain
+#     echo "ROS2 humble is activated! (ID=13) (ros2_ws_3)"
+# }
+# rw3
+
+# rw5() {
+#     cd ~/ros2_ws_5
+#     export PYTHONPATH=$PYTHONPATH:~/ros2_ws_5/install/common2/lib/common2/imp
+#     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ros/humble/lib
+#     export RVIZ_PLUGIN_PATH=$RVIZ_PLUGIN_PATH:/opt/ros/humble/lib
+#     source /opt/ros/humble/local_setup.bash
+#     source install/setup.bash
+#     ros_domain
+#     echo "ROS2 humble is activated! (ID=13) (ros2_ws_5)"
+# }
+# rw5
+
+rw() {
+    cd ~/ros2_ws
+    export PYTHONPATH=$PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
+    source /opt/ros/humble/local_setup.bash
+    source install/setup.bash
+    ros_domain
+    echo "ROS2 humble is activated! (ID=13) (ros2_ws_tr2)"
+}
+rw
+
+
+# rwsource /opt/ros/humble/setup.bash
+# source /opt/ros/humble/setup.bash
+# source /opt/ros/humble/setup.bash
+# source ~/ros2_ws/install/setup.bash
