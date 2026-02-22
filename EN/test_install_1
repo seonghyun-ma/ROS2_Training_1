@@ -1,0 +1,104 @@
+bash <<'EOF'
+
+set -e
+
+############################
+# 기본 변수 설정
+############################
+ROS_DISTRO=humble
+WS=ros2_ws
+UBUNTU_CODENAME=jammy
+
+echo -e "\n\n\n\n\n=== 1. Locale 설정 ==="
+sudo apt update
+sudo apt install -y locales
+sudo locale-gen en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+echo -e "\n\n\n\n\n=== 2. ROS2 설치 ==="
+sudo apt install -y software-properties-common curl
+sudo add-apt-repository universe -y
+sudo apt update
+
+export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
+
+curl -L -o /tmp/ros2-apt-source.deb \
+"https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${UBUNTU_CODENAME}_all.deb"
+
+sudo dpkg -i /tmp/ros2-apt-source.deb
+sudo apt update
+sudo apt install -y ros-humble-desktop ros-dev-tools
+
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
+echo -e "\n\n\n\n\n=== 3. Docker 설치 ==="
+sudo apt remove -y docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc 2>/dev/null || true
+
+sudo apt install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo tee /etc/apt/sources.list.d/docker.sources <<DOCKER
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: ${UBUNTU_CODENAME}
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.gpg
+DOCKER
+
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker $USER
+
+echo -e "\n\n\n\n\n=== 4. Gazebo 및 MoveIt 패키지 설치 ==="
+sudo apt install -y \
+libpoco-dev libyaml-cpp-dev dbus-x11 \
+ros-humble-control-msgs \
+ros-humble-realtime-tools \
+ros-humble-xacro \
+ros-humble-joint-state-publisher-gui \
+ros-humble-ros2-control \
+ros-humble-ros2-controllers \
+ros-humble-gazebo-msgs \
+ros-humble-gazebo-ros-pkgs \
+ros-humble-moveit \
+ros-humble-moveit-msgs \
+ros-humble-moveit-configs-utils \
+ros-humble-moveit-ros-move-group \
+ros-humble-ros-gz-sim \
+ros-humble-ros-gz-image \
+ros-humble-ign-ros2-control
+
+echo -e "\n\n\n\n\n=== 5. Workspace 및 Doosan 패키지 설치 ==="
+mkdir -p ~/${WS}/src
+cd ~/${WS}/src
+
+if [ ! -d "doosan-robot2" ]; then
+  git clone -b humble-devel https://github.com/seonghyun-ma/doosan-robot2.git
+fi
+
+if [ ! -d "gz_ros2_control" ]; then
+  git clone -b humble https://github.com/ros-controls/gz_ros2_control
+fi
+
+sudo rosdep init 2>/dev/null || true
+rosdep update
+rosdep install -r --from-paths . --ignore-src --rosdistro ${ROS_DISTRO} -y
+
+echo -e "\n\n\n\n\n=== 6. Doosan Emulator 설치 ==="
+cd ~/${WS}/src/doosan-robot2
+sudo ./install_emulator.sh || true
+
+echo -e "\n\n\n\n\n=== 7. 빌드 ==="
+cd ~/${WS}
+source /opt/ros/humble/setup.bash
+colcon build
+
+echo "source ~/${WS}/install/setup.bash" >> ~/.bashrc
+
+echo -e "\n\n\n\n\n=== 설치 완료 ==="
+echo "  새 터미널을 열거나 'newgrp docker' 실행 후 사용하세요."
+
+EOF
