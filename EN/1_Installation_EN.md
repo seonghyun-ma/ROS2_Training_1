@@ -286,70 +286,122 @@ Execute the following commands at once:
 
 ```bash
 
-##################### Setting Variables #####################
-ROS_DISTRO=humble # ros2 distribution
-USER=asd # user name
-ws_name=ros2_ws # workspace name
+bash <<'EOF'
 
-##################### ROS2 Installation #####################
-### Set UTF-8 locale
-sudo apt update && sudo apt install -y locales
+set -e
+
+############################
+# Set default variables
+############################
+ROS_DISTRO=humble
+WS=ros2_ws
+UBUNTU_CODENAME=jammy
+
+
+
+
+echo -e "\n\n\n\n\n=== 1. Set Locale ==="
+sudo apt update
+sudo apt install -y locales
 sudo locale-gen en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-### Install ROS2 repository and dependencies
+
+
+
+echo -e "\n\n\n\n\n=== 2. Install ROS2 ==="
 sudo apt install -y software-properties-common curl
 sudo add-apt-repository universe -y
-sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-echo "deb [arch=(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu (. /etc/os-release && echo UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 sudo apt update
-sudo apt upgrade -y
-sudo apt install -y ros-humble-desktop ros-humble-ros-base ros-dev-tools
 
-##################### Docker Installation #####################
-sudo apt-get update
-sudo apt-get install -y ca-certificates curl
+export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
+
+curl -L -o /tmp/ros2-apt-source.deb \
+"https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.${UBUNTU_CODENAME}_all.deb"
+
+sudo dpkg -i /tmp/ros2-apt-source.deb
+sudo apt update
+sudo apt install -y ros-humble-desktop ros-dev-tools
+
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
+
+
+
+echo -e "\n\n\n\n\n=== 3. Install Docker ==="
+sudo apt remove -y docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc 2>/dev/null || true
+
+sudo apt install -y ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu (. /etc/os-release && echo "VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo docker run hello-world
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-##################### Doosan ROS2 Package Installation#####################
-### Prerequisite installation elements before package installation
-sudo apt-get update
-sudo apt-get install -y libpoco-dev libyaml-cpp-dev wget
-sudo apt-get install -y ros-humble-control-msgs ros-humble-realtime-tools ros-humble-xacro ros-humble-joint-state-publisher-gui ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-gazebo-msgs ros-humble-moveit-msgs dbus-x11 ros-humble-moveit-configs-utils ros-humble-moveit-ros-move-group
-sudo apt install ros-humble-moveit* -y
+sudo tee /etc/apt/sources.list.d/docker.sources <<DOCKER
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: ${UBUNTU_CODENAME}
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.gpg
+DOCKER
 
-### install gazebo sim
- echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable (lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list
-wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install -y libignition-gazebo6-dev ros-humble-gazebo-ros-pkgs ros-humble-moveit-msgs ros-humble-ros-gz-sim ros-humble-ros-gz-image ros-humble-tf-transformations
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker $USER
 
-### We recommand the /home/<user_home>/ros2_ws/src
-mkdir -p ~/ws_name/src
-cd ~/ws_name/src
-git clone -b humble-devel https://github.com/seonghyun-ma/doosan-robot2.git
-git clone -b humble https://github.com/ros-controls/gz_ros2_control
-sudo rosdep init
+
+
+
+echo -e "\n\n\n\n\n=== 4. Install Gazebo and MoveIt Package ==="
+sudo apt install -y \
+libpoco-dev libyaml-cpp-dev dbus-x11 \
+ros-humble-control-msgs \
+ros-humble-realtime-tools \
+ros-humble-xacro \
+ros-humble-joint-state-publisher-gui \
+ros-humble-ros2-control \
+ros-humble-ros2-controllers \
+ros-humble-gazebo-msgs \
+ros-humble-gazebo-ros-pkgs \
+ros-humble-moveit \
+ros-humble-moveit-msgs \
+ros-humble-moveit-configs-utils \
+ros-humble-moveit-ros-move-group \
+ros-humble-ros-gz-sim \
+ros-humble-ros-gz-image \
+ros-humble-ign-ros2-control
+
+echo -e "\n\n\n\n\n=== 5. Install Workspace and Doosan Package ==="
+mkdir -p ~/${WS}/src
+cd ~/${WS}/src
+
+if [ ! -d "doosan-robot2" ]; then
+  git clone -b humble-devel https://github.com/seonghyun-ma/doosan-robot2.git
+fi
+
+if [ ! -d "gz_ros2_control" ]; then
+  git clone -b humble https://github.com/ros-controls/gz_ros2_control
+fi
+
+sudo rosdep init 2>/dev/null || true
 rosdep update
-rosdep install -r --from-paths . --ignore-src --rosdistro ROS_DISTRO -y
+rosdep install -r --from-paths . --ignore-src --rosdistro ${ROS_DISTRO} -y
 
-### Install Doosan Robot Emulator
-cd ~/ws_name/src/doosan-robot2
-sudo usermod -aG docker USER
-sudo ./install_emulator.sh
+echo -e "\n\n\n\n\n=== 6. Install Doosan Emulator ==="
+cd ~/${WS}/src/doosan-robot2
+sudo ./install_emulator.sh || true
 
-### Build settings
-cd ~/ws_name
+echo -e "\n\n\n\n\n=== 7. Build ==="
+cd ~/${WS}
 source /opt/ros/humble/setup.bash
-colcon build # v3 --> colcon build -DDRCF_VER=3
-. install/setup.bash
+colcon build
+
+echo "source ~/${WS}/install/setup.bash" >> ~/.bashrc
+
+echo -e "\n\n\n\n\n=== Install Complete ==="
+echo "    Open a new terminal or run command 'newgrp docker' before using it."
+
+EOF
 ```
 </details>
 
