@@ -269,10 +269,6 @@ Instead, use this command to download the Doosan ROS2 Package.
 <br/> 
 
 > Note<br/> 
-> 
-> " ROS_DISTRO" and " USER" require the ROS2 version and your username.<br/>
-> e.g. rosdep install -r --from-paths . --ignore-src --rosdistro humble -y
->
 > To use ROS2 with Version 3.x Controller, specify the build option:<br/>
 >  colcon build --cmake-args -DDRCF_VER=3<br/>
 > <br/>
