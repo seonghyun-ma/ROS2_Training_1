@@ -161,20 +161,38 @@ Add the following lines to the bottom of the .bashrc file and save:
 ```bash
 echo "bashrc is reloaded!"
 echo "==================="
-echo "if you want to use ROS2(ID=13), type the command \"rt\""
+echo "if you want to use ROS2(ID=13),   type the command \"rt\""
 echo "if you want to reload the bashrc, type the command \"sb\""
-echo "if you want to open the bashrc, type the command \"cb\""
+echo "if you want to open the bashrc,   type the command \"cb\""
+echo "test simulation   : test"
+echo "joing 90 position : j90"
+echo "edu_example build : qwe"
+
 alias cb="code ~/.bashrc"
 alias sb="source ~/.bashrc"
-alias cb="code ~/.bashrc"
 alias ros_domain="export ROS_DOMAIN_ID=13; echo \"ROS_DOMAIN_ID=13\""
+
+alias test="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=virtual host:=127.0.0.1 port:=12345 model:=m1013"
+
+alias j90="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+alias j0="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  0,   0,  0,   0], vel: 30, acc: 30}\""
+alias qwe="colcon build --packages-select edu_example" # ; ros2 run edu_example test_function"
+
+alias r1="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=real host:=192.168.127.100 model:=m0609 name:=dsr01 port:=12345 color:=white"
+alias r2="ros2 launch dsr_bringup2 dsr_bringup2_rviz.launch.py mode:=real host:=192.168.137.101 model:=m0609 name:=dsr02 port:=12345 color:=blue"
+
+alias d11="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,   0,   0,   0,   0], vel: 30, acc: 30}\""
+alias d12="ros2 service call /dsr01/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+alias d21="ros2 service call /dsr02/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,   0,   0,   0,   0], vel: 30, acc: 30}\""
+alias d22="ros2 service call /dsr02/motion/move_joint dsr_msgs2/srv/MoveJoint   \"{pos: [   0,   0,  90,   0,  90,   0], vel: 30, acc: 30}\""
+
 rw() {
-cd ~/ros2_ws
-export PYTHONPATH=PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
-source /opt/ros/humble/local_setup.bash
-source install/setup.bash
-ros_domain
-echo "ROS2 humble is activated! (ID=13) (ros2_ws)"
+    cd ~/ros2_ws
+    export PYTHONPATH=$PYTHONPATH:~/ros2_ws/install/common2/lib/common2/imp
+    source /opt/ros/humble/local_setup.bash
+    source install/setup.bash
+    ros_domain
+    echo "ROS2 humble is activated! (ID=13) (ros2_ws)"
 }
 rw
 
